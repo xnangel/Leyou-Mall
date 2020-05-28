@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ac90e02f-f3bb-459b-88b9-830ac08a45d0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\hadoop\apache-maven-3.3.9\mavenLocalRepository" />
+        <option name="mavenHome" value="D:/hadoop/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="D:\hadoop\apache-maven-3.3.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YKpOZUllVqlYnDCNRJIUKxdobL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../leyou" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\prictice6_JavaEE\projects\leyou-portal\js" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ac90e02f-f3bb-459b-88b9-830ac08a45d0" name="Default Changelist" comment="" />
+      <created>1582701108096</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582701108096</updated>
+      <workItem from="1582701109817" duration="1537000" />
+      <workItem from="1582706581817" duration="1235000" />
+      <workItem from="1582984531834" duration="3559000" />
+      <workItem from="1583031745073" duration="10539000" />
+      <workItem from="1583118665304" duration="13542000" />
+      <workItem from="1583206882003" duration="2012000" />
+      <workItem from="1583222689371" duration="2657000" />
+      <workItem from="1583499569840" duration="667000" />
+      <workItem from="1583547124607" duration="1206000" />
+      <workItem from="1583557496484" duration="141000" />
+      <workItem from="1583907852145" duration="2940000" />
+      <workItem from="1584180199527" duration="96000" />
+      <workItem from="1584847637762" duration="394000" />
+      <workItem from="1584848046109" duration="152000" />
+      <workItem from="1584848591011" duration="1301000" />
+      <workItem from="1584927459818" duration="1683000" />
+      <workItem from="1584970637120" duration="391000" />
+      <workItem from="1585008010956" duration="686000" />
+      <workItem from="1585101075767" duration="6516000" />
+      <workItem from="1585195577055" duration="289000" />
+      <workItem from="1586433649428" duration="3450000" />
+      <workItem from="1586440072574" duration="119000" />
+      <workItem from="1587476526865" duration="704000" />
+      <workItem from="1587536157898" duration="5855000" />
+      <workItem from="1587604304411" duration="583000" />
+      <workItem from="1587604914814" duration="619000" />
+      <workItem from="1587606536350" duration="2279000" />
+      <workItem from="1587619963409" duration="3985000" />
+      <workItem from="1587641681841" duration="1911000" />
+      <workItem from="1590195236425" duration="7273000" />
+      <workItem from="1590244983583" duration="1590000" />
+      <workItem from="1590310028351" duration="1117000" />
+      <workItem from="1590319895148" duration="633000" />
+      <workItem from="1590402329459" duration="717000" />
+      <workItem from="1590457993156" duration="599000" />
+      <workItem from="1590474793247" duration="4981000" />
+      <workItem from="1590502774830" duration="2609000" />
+      <workItem from="1590582463484" duration="2159000" />
+      <workItem from="1590634940120" duration="484000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="832" y="216" key="FileChooserDialogImpl" timestamp="1590582500428">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="832" y="216" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1590582500428" />
+    <state x="716" y="191" width="954" height="690" key="find.popup" timestamp="1587545399627">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="716" y="191" width="954" height="690" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1587545399627" />
+    <state x="296" y="110" key="new project wizard" timestamp="1586433784672">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="296" y="110" key="new project wizard/0.0.1920.1032@0.0.1920.1032" timestamp="1586433784672" />
+    <state x="772" y="0" width="840" height="1030" key="search.everywhere.popup" timestamp="1585110646490">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="772" y="0" width="840" height="1030" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1585110646490" />
+  </component>
+</project>

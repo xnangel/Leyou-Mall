@@ -1,0 +1,27 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/db_leyou
+    username: root
+    password: x33334
+    driver-class-name: com.mysql.jdbc.Driver
+  rabbitmq:
+    host: 127.0.0.1
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+  redis:
+    host: 192.168.43.111
+    port: 6379
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+mybatis:
+  type-aliases-package: com.leyou.user.pojo

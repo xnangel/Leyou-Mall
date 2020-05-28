@@ -1,0 +1,79 @@
+基于网络爬虫的新闻系统设计与实现
+
+1. 传统的新闻网站系统的缺点？
+	* 门户网站考广告生存，存在严重的 打包销售现象
+	* 帅选内容。媒体所构造的不那么真实的世界。
+	* 内容及展示内容的形式
+	* 新闻网站通过人工方式采集发布来自其他网站的Web新闻，费时费力、易采重与漏采问题。
+		* 解决：基于网络爬虫 信息自动采集、网页去躁技术、文本文档去重技术、文本自动分类技术
+	
+2. 该系统的系统架构，功能结构？
+	- 1、新闻自动爬取模块
+	- 2、新闻管理模块
+	- 3、新闻类目管理模块
+	- 4、用户管理模块
+	- 5、搜索模块
+	- 6、关键词自动抽取模块
+	- 7、登录注册模块
+	- 8、图片管理模块
+	- 9、推荐功能模块
+	- 10、通知功能模块（相对于管理员）
+
+3. 该系统的数据库设计？
+
+4. 该系统的页面设计？
+
+5. 该系统的技术选型？
+	- 前端技术：
+		* Vue.js	：npm install -g vue	-> 	cpm install cnpm -g --registry=https://registry.npm.taobao.org
+		* Vue-cli	: cnpm install -g vue-cli	-> vue init webpack
+		* Vuetify	: cnpm i vuetify -S
+		* 引入icon库 : cnpm install material-design-icons-iconfont --save-dev（入口js文件中：import 'material-design-icons-iconfont/dist/material-design-icons.css'）
+		* axios		: cnpm i axios -S
+		
+		* element-ui
+	- 后端技术：
+		* SpringCloud(Zuul Eureka Hystrix Ribbon)
+		* SpringBoot
+		* mysql
+		* 通用Mapper
+		* pageHelper
+		* SpringMVC
+		* FastDFS
+
+参考关键词：爬虫爬取新闻系统分解
+
+https://news.baidu.com/ent
+https://tuijian.hao123.com/
+https://www.thepaper.cn/
+https://www.huanqiu.com/
+http://www.people.com.cn/
+https://news.sina.com.cn/
+https://news.qq.com/
+http://paper.people.com.cn/rmrb/html/2020-03/28/nbs.D110000renmrb_01.htm
+https://s.weibo.com/top/summary?cate=realtimehot
+https://github.com/search?p=2&q=%E6%96%B0%E9%97%BB&type=Repositories
+
+
+https://cloud.tencent.com/developer/information/java%E7%B1%BB%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%80%BC
+
+任务：
+	a、springboot中 如何动态实现任务调度管理 https://www.cnblogs.com/baixianlong/p/10659045.html
+	b、对爬取到的内容进行关键词抽取	https://www.jianshu.com/p/e129d312d1a9?utm_campaign=maleskine&utm_content=note&utm_medium=reader_share&utm_source=weibo
+		https://blog.csdn.net/qq_41664845/article/details/82869596
+	d、管理系统的登录拦截	cookie bug : https://blog.csdn.net/qq_23329167/article/details/83720504、https://www.jianshu.com/p/aef58c67d37e
+
+
+
+
+https://x.cnki.net/read/article/pdfonline?filename=1011192894.nh&tablename=CMFDTOTAL&dbcode=CMFD&topic=&fileSourceType=1&taskId=&from=&groupid=&appId=CRSP_BASIC_PSMC&act=&customReading=&ts=1588651895#
+
+https://x.cnki.net/read/article/pdfonline?filename=1014166150.nh&tablename=CMFDTOTAL&dbcode=CMFD&topic=&fileSourceType=1&taskId=&from=&groupid=&appId=CRSP_BASIC_PSMC&act=&customReading=&ts=1588651722#/pdf.html
+
+https://x.cnki.net/read/article/pdfonline?filename=1017119578.nh&tablename=CMFDTOTAL&dbcode=CMFD&topic=&fileSourceType=1&taskId=&from=&groupid=&appId=CRSP_BASIC_PSMC&act=&customReading=&ts=1588647579#/pdf.html
+
+https://x.cnki.net/read/article/xmlonline?filename=RJDK200903040&tablename=CJFDTOTAL&dbcode=CJFD&topic=&fileSourceType=1&taskId=&from=&groupid=&appId=CRSP_BASIC_PSMC&rdts=1588646151
+
+https://x.cnki.net/read/article/xmlonline?filename=JYXH201002032&tablename=CJFDTOTAL&dbcode=CJFD&topic=&fileSourceType=1&taskId=&from=&groupid=&appId=CRSP_BASIC_PSMC&rdts=1588646035
+
+https://x.cnki.net/read/article/pdfonline?filename=dzzz201511104&tablename=CJFDTOTAL&dbcode=CJFD&topic=&fileSourceType=1&taskId=&from=&groupid=&appId=CRSP_BASIC_PSMC&act=&customReading=&ts=1588645664#/pdf.html

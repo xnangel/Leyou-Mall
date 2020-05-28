@@ -1,0 +1,33 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: item-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver  # 可以省略，url中可以猜测出驱动类型
+    url: jdbc:mysql://localhost:3306/db_leyou
+    username: root
+    password: x33334
+  rabbitmq:
+    host: 127.0.0.1
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+    template:
+      retry:
+        enabled: true # 重试开启
+        initial-interval: 10000ms # 初始化的重试周期为10秒
+        max-interval: 30000ms # 最大重试周期为30秒
+        multiplier: 2 # 倍数为2，即第一次重试周期是10秒，第二次是等待20秒在重试，之后40秒...
+      exchange: ly.item.exchange  # 默认交换机
+    publisher-confirms: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
