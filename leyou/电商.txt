@@ -1,0 +1,798 @@
+1. 电商行业有什么特点？
+* 技术范围广
+* 技术新
+* 要求双高：
+	* 高并发（分布式、静态化技术、CDN服务、缓存技术、异步并发、池化、队列）
+	* 高可用（集群、附在均衡、限流、降级、熔断）
+* 数据量大
+* 业务复杂
+
+2. 常见电商模式：
+* B2C：商家对个人，如：亚马逊、当当等
+* C2C平台：个人对个人，如：咸鱼、拍拍网、ebay
+* B2B平台：商家对商家，如：阿里巴巴、八方资源网等
+* O2O：线上和线下结合，如：饿了么、电影票、团购等
+* P2P：在线金融，贷款，如：网贷之家、人人聚财等
+* B2B2C平台：天猫，京东、一号店等
+
+3. 乐优商城(B2C)
+* 商城管理系统前端页面：
+	* 使用vuetify + vue.js框架搭建出单页应用(SPA)
+	* webpack：
+		* 是一个前端资源的打包工具，可以将js、image、css等资源当成一个模块进行打包。
+		* 中文官方网站：https://www.webpackjs.com/
+		* 为什么需要打包？
+			* 将许多碎小文件打包成一个整体，减少单页内的衍生请求次数，提高网站效率。
+			* 将ES6的高级语法进行转换编译，以兼容老版本的浏览器。
+			* 将代码打包的同时进行混淆，提供代码的安全性。
+		* 四个核心概念：
+			* 入口(entry)：webpack打包的启点。webpack会从启点文件开始，寻找启点直接或间接依赖的其他所有依赖，包括js、css、图片资源等，作为将来打包的原始数据。
+			* 输出(output)：出口一般包含两个属性：path和filename。用来告诉webpack打包的目标文件，以及文件的名称。目的地也可以有多个。
+			* 加载器(loader)：webpack本身只识别js文件，如果要加载非js文件，必须指定指定一些额外的加载器，例如css-loader。然后将这些文件转为webpack能处理的有效模块，最后利用webpack的打包能力去处理。
+			* 插件：可以扩展webpack的功能。
+	* vue-cli：
+		* 安装命令：npm install -g vue-cli
+		* idea: vue init webpack
+	* Vuetify框架：是一个基于Vue的UI框架，可以利用预定义的页面组件块素构建页面。优点类似BootStrap框架。
+* 搭建基础服务
+	* 技术选型
+		* 前端技术：
+			* 基础的HTML、CSS、JavaScript(基于ES6标准)
+			* jQuery
+			* Vue.js2.0以及基于Vue的UI框架：Vuetify
+			* 前端构建工具：WebPack
+			* 前端安装包工具：NPM
+			* Vue脚手架：Vue-cli
+			* Vue路由：Vue-router
+			* ajax框架：axios
+			* 基于Vue的富文本框架：quill-editor
+		* 后端技术：
+			* 基础的SpringMVC、Spring 5.0和MyBatis3
+			* Spring Boot 2.0.4版本
+			* Spring Cloud Finchley.SR1
+			* Redis 4.0
+			* RabbitMQ 3.4
+			* Elasticsearch 5.6.8
+			* nginx 1.10.2
+			* FastDFS 5.0.8
+			* MyCat
+			* Thymeleaf
+			* JWT
+	* 开发环境
+		* IDE：使用idea
+		* JDK：1.8
+		* 项目构建：maven 3.3+
+	* 域名：
+		* 一级域名：www.leyou.com
+		* 二级域名：manage.leyou.com, api.leyou.com
+		* 域名解析：
+			* 本地域名解析，浏览器会首先在本机的hosts文件中查找域名映射的IP地址，如果查找到就返回IP，
+				没找到则进行域名服务器解析，一般本地解析都会失败，因为默认这个文件是空的。
+					* Windows下的hosts文件地址：C://Windows/System32/drivers/etc/hosts
+					* Linux下的hosts文件所在路径：/etc/hosts
+			* 域名服务器解析，本地解析失败，才会进行域名服务器解析，域名服务器就是网络中的一台计算机，里面记录了所有注册备案的域名
+				和ip映射关系，一般只要域名是正确的，并且备案通过，一定能找到。
+	* nginx解决端口问题：
+		* 什么是nginx？是一个高性能的Web和反向代理服务器。
+		* nginx可以作为网关，因为它具有网关必备的功能：① 反向代理	② 负载均衡	③ 动态路由	④ 请求过滤
+		* nginx作为web服务器
+			* Web服务器分2类：
+				* web应用服务器，如：tomcat、resin、jetty
+				* web服务器，如：Apache服务器、Nginx、IIS
+			* 区分：web服务器不能解析jsp等页面，只能处理js、css、html等静态资源。
+			* 并发：web服务器的并发能力远高于web应用服务器。
+		* nginx作为反向代理：
+			* 什么是反向代理？
+				* 代理：通过客户机的配置，实现让一台服务器代理客户机，客户的所有请求都交给代理服务器处理。
+				* 反向代理：用一台服务器，代理真实服务器，用户访问时，不再是访问真实服务器，而是代理服务器。
+			* nginx可以当做反向代理来使用：
+				* 提前在nginx中配置好反向代理的规则，不同的请求，交给不同的真实服务器处理
+				* 当请求到达nginx，nginx会根据已定义的规则进行请求的转发，从而实现路由功能。
+		* 在linux中配置nginx（参考：https://www.cnblogs.com/shamo89/p/7645792.html, https://www.cnblogs.com/martinl/p/10908607.html）
+			* 上传nginx-1.10.0.tar.gz到目录：/home/leyou
+			* 解压：tar -xvf nginx-1.10.1.tar.gz
+			* 配置:
+				* 进入nginx目录 -> ./configure --prefix=/opt/nginx (是指安装的目录是在：/opt/nginx目录下)
+				* 编译安装：make && make install
+				* nginx可以通过命令行来启动，操作命令。
+					* 启动：sudo /opt/nginx/sbin/nginx
+					* 停止：sudo /opt/nginx/sbin/nginx -s -stop
+					* 重新加载：sudo /opt/nginx/sbin/nginx -s reload
+					* 防火墙关闭，开机不启动：chkconfig iptables off, 开机启动：service iptables stop
+				server {
+					listen 80;
+					server_name manage.leyou.com;
+
+					proxy_set_header X-Forwarded-Host $host;
+					proxy_set_header X-Forwarded-Server $host;
+					proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+					location / {
+						proxy_pass http://192.168.43.31:9001; # 主机地址下的9001端口
+						proxy_connect_timeout 600;
+						proxy_read_timeout 600;
+					}
+				}
+
+				server {
+					listen 80;
+					server_name api.leyou.com;
+
+					proxy_set_header X-Forwarded-Host $host;
+					proxy_set_header X-Forwarded-Server $host;
+					proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+					location / {
+							proxy_pass http://192.168.43.31:10010;
+							proxy_connect_timeout 600;
+							proxy_read_timeout 600;
+					}
+				}
+				
+	* 跨域问题：
+		* 什么是跨域问题：跨域是指垮域名的访问，一下情况都属于跨域：
+			1、 域名不同。例：www.jd.com 与 www.taobao.com
+			2、 域名相同，端口不同。例：www.jd.com:8080 与 www.jd.com:8081
+			3、 二级域名不同。例：item.jd.com 与 miaosha.jd.com
+		* 如果域名和端口都相同，但是请求路径不同，不属于跨域，如：www.jd.com/item 与 www.jd.com/goods
+		* 跨域不一定会有跨域问题。因为跨域问题是 浏览器对ajax请求的一种安全限制 ：一个页面发起ajax请求，只能是于当前页同域名的路径，这能有效的阻止跨站攻击。
+		* 解决跨域问题的方案：
+			* jsonp：最早的解决方案，利用script标签可以跨域的原理实现。限制：① 需要服务的支持，② 只能发起GET请求
+			* nginx反向代理：思路（利用nginx反向代理把跨域为不跨域，支持各种请求方式） 缺点（需要在nginx进行额外配置，语义不清晰）
+			* CORS：规范化的跨域请求解决方案，安全可靠。优势：① 在服务端进行控制是否允许跨域，可自定义规则。 ② 支持各种请求方式。 缺点：会产生额外的请求。
+		* cors解决跨域：
+			* cors需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。
+				* 服务器：cors通信与ajax没有任何差别，因此你不需要改变以前的业务逻辑。只不过，浏览器会在请求中携带一些头信息，我们需要以此判断是否运行其跨域，然后在响应头中加入一些信息即可。这一般通过过滤完成即可。
+			* 原理：浏览器会将ajax请求分为两类，其处理方案略有差异：简单请求、特殊请求。
+				* 简单请求：
+					* 只要同时满足以下两大条件，就属于简单请求。
+						* 请求方法是以下三种方法之一：① HEAD ② GET ③ POST
+						* HTTP的头信息不超出以下几种字段：① Accept ② Accept-Language ③ Content-Language ④ Last-Event-ID ⑤ Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
+					* 当浏览器发现发送的ajax请求是简单请求时，会在请求头中携带一个字段：origin
+					* 如果服务器允许跨域，需要在返回的响应头中携带下面信息：
+						* Access-Control-Allow-Origin：可接受的域，是一个具体域名或者*(代表任意)
+						* Access-Control-Allow-Credentials：是否允许携带cookie，默认情况下，cors不会携带cookie，除非这个值是true
+					* 如果跨域请求要想操作cookie，需要满足3个条件：
+						* 服务的响应头中需要携带Access-Control-Allow-Credentials并且为true。
+						* 浏览器发起ajax需要指定withCredentials为true。
+						* 响应头中的Access-Control-Allow-Origin一定不能为*，必须是指定的域名。
+				* 特殊请求：不符合简单请求的条件，会被浏览器判断为特殊请求。例：请求方式为PUT
+					1. 预检请求：特殊请求会在正式通信之前，增加一次HTTP查询请求，称为“预检”请求。浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用那些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。
+						* 一个“预检”请求的样板：
+							OPTIONS /cors HTTP/1.1
+							Origin: http://manage.leyou.com
+							Access-Control-Request-Method: PUT		# 请求方式
+							Access-Control-Request-Headers: X-Custom-Header		# 会额外用到的头信息
+							Host: api.leyou.com
+							Accept-Language: en-US
+							Connection: keep-alive
+							User-Agent: Mosilla/5.0...
+					2. 预检请求的响应：如果许可跨域，会发出响应：
+						* Access-Control-Allow-Origin: http://manage.leyou.com
+						* Access-Control-Allow-Credentials: true
+						* Access-Control-Allow-Methods: GET, POST, PUT
+						* Access-Control-Allow-Headers: X-Custom-Header
+						* Access-Control-Max-Age	# 本次许可的有效时长，单位是秒，过期之前的ajax请求就无需再次进行预检了
+	* 编写controller先思考四个问题：① 请求方式，② 请求路径，③ 请求参数，④ 返回结果
+	* 实现图片上传
+		* 绕过网关缓存：默认情况下，所有的请求经过Zuul网关的代理，默认会通过SpringMVC预先对请求进行处理，缓存。普通请求并不会有什么影响，但是对于文件上传，
+			就会造成不必要的网络负担。在高并发时，可能导致网络阻塞，Zuul网关不可用，导致整个系统瘫痪。
+			* 添加/zuul前缀，经过zuul网关时，可以避开缓存。
+		* FastDFS
+			* 什么是分布式文件系统：是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。
+				分布式文件系统管理的文件存储在很多机器，这些机器通过网络连接，要被统一管理。无论是上传或者访问文件，都需要通过管理中心来访问。
+			* 什么是FastDFS：是一个轻量级、高性能的开源分布式文件系统。用纯c语言开发，功能丰富：
+				① 文件存储 ② 文件同步 ③ 文件访问(上传、下载) ④ 存取负载均衡 ⑤ 在线扩容
+	* 商品数据结构
+		* 规格参数数据结构：
+			class Group {
+				Long id;
+				Long cid;
+				String name;
+				List<Param> params;
+			}
+			
+			class Param {
+				Long id;
+				Long groupId;
+				String name;
+				boolean enumeric;
+				String unit;
+				boolean searching;
+				String segment;
+			}
+		* SPU和SKU数据结构
+			* SPU：标准产品单位，一组具有共同属性的商品集合
+			* SKU：库存量单位，SPU商品集因具体特性不同而细分的每个商品
+				class Spu {
+					Long id;
+					String title;
+					String subTitle;
+					Long cid1;
+					Long cid2;
+					Long cid3;
+					Long brandId;
+					Boolean saleable;
+					Boolean valid;
+					Date createTime;
+					Date lastUpdateTime;
+				}
+				
+				# Spu表的垂直拆分，目的：detail存储的内容文件大小偏大，读取的次数较少些
+				# "1"对应规格参数中的id
+				class SpuDetail {
+					Long spuId;
+					String description;
+					String genericSpec;		// 例：{"1":"小辣椒","2":"小辣椒2","3":"2020","5":"100","6":"玻璃","7":"安卓","8":"麒麟","9":"麒麟996","10":"32核","11":"4000","14":"5.7","15":"40000","16":"2","17":"4","18":"1000000000"}
+					String specialSpec;		// 例：{"4":["抹茶绿","梦幻紫"],"12":["4G","8G"],"13":["128G"]}
+					String packingList;
+					String afterService;
+				}
+				
+				
+				class Sku {
+					Long id;
+					Long spuId;
+					String title;
+					String images;
+					Long price;
+					String indexes;
+					String ownSpec;		// 例：{"4":"抹茶绿","12":"4G","13":"128G"}
+					Boolean enable;
+					Date createTime;
+					Date lastUpdateTime;
+				}
+				
+				# sku的垂直分表，目的：stock库存的写操作比较频繁
+				class Stock {
+					Long skuId;
+					Integer stock;
+				}
+				
+	* 搭建前台系统
+		* live-server：
+			* 这是一款带有热加载功能的小型开发服务器。用它可以展示HTML/JAVASCRIPT/CSS，但不能用于部署最终的网站。
+			* 安装，使用npm命令，建议全局安装（以后任意位置可用）:npm install -g live-server
+		* Elasticsearch: 
+			* 相关特点：
+				* 分布式，无需人工搭建集群（solr需要人为配置，使用zookeeper作为注册中心）
+				* Restful风格，一切API都遵循Rest原则，容易上手
+				* 近实时搜索，数据更新在ElasticSearch中几乎是完全同步的。
+			* 操作索引
+				* 基本概念：Elasticsearch也是基于Lucene的全文检索库，本质也是存储数据，很多概念与MySql类似的。
+					* 对比关系：
+						索引集（indices）------------------------Databases 数据库
+							类型（type）------------------------Table 数据表
+								文档（Document）---------------Row 行
+									字段（Field）---------Columns 列
+					* 类型(type)：一个索引库下可以有不同类型的索引，比如商品索引，订单索引，其数据格式不同。不过这会导致索引库混乱，因此未来版本中会移除这个概念。
+					* 映射配置(mappings)：字段的数据类型、属性、是否索引、是否存储等特性。
+					* 分片(shard)：数据拆分后的各个部分
+					* 副本(replica)：每个分片的复制
+					* 注意：Elasticsearch本身就是分布式的，因此即使你只有一个节点，Elasticsearch默认也会对你的数据进行分片和副本操作，当你向集群添加新数据时，数据也会在新加入的节点中进行平衡。
+				* 创建索引：
+					* 请求方式：PUT
+					* 请求路径：/索引库名
+					* 请求参数：json格式
+						{
+							"settings": {
+								"number_of_shards": 3,
+								"number_of_replicas": 2
+							}
+						}
+						* settings：索引库的设置。number_of_shards：分片数量，number_of_replicas：副本数量
+				* 删除索引：
+					* 请求方式：DELETE
+					* 请求路径：/索引库名
+				* 查询索引：
+					* 请求方式：GET 
+					* 请求路径：/索引库名
+				* 创建映射字段：
+					* 请求方式：PUT
+					* 请求路径：/索引库名/_mapping/类型名称
+					* 请求参数：json格式
+						{
+							"properties": {
+								"字段名": {
+									"type": "类型",
+									"index": true,
+									"store": true,
+									"analyzer": "分词器"
+								}
+							}
+						}
+						* 类型名称：就是type的概念，类似于数据库中的不同表
+						* 字段名：任意写，可以指定许多属性，例如：
+							type：类型，可以是text、long、short、date、integer、object等
+								String类型的有：text【可分词】	keyword【不可分词】
+								Numeric dataTypes：long、integer、short、byte、double、float、halt_float、scaled_float
+								Date dataTypes：date
+								Boolean dataType：boolean
+								Binary dataType：binary
+								Range dataTypes：integer_range、float_range、long_range、double_range、date_range
+								* 注意：如果存的是对象，比如：{girl: {name:"rose",age:21}} 会被处理成两个字段：girl.name和girl.age
+							index：是否索引，默认为true。如果索引，则可以用来进行搜索
+							store：是否存储，默认为false。在ElasticSearch中，即便store设置为false，也可以搜索到结果。
+								原因：是Elasticsearch在创建文档索引时，会将文档中的原始数据备份，保存到一个叫做_source的属性中。而且我们可一个通过过滤_source来选择哪些要显示，那些不显示。
+									如果设置store为true，就会在_source以外额外存储一份数据，多余。
+							analyzer：分词器
+				* 新增数据
+					* 随机生成id
+						* 请求方式：POST
+						* 请求路径：/索引库名/类型名称
+						* 请求参数：json格式
+							{
+								"key": "value"
+							}
+					* 自定义id
+						POST /索引库名/类型名称/id值
+						{
+							...
+						}
+					* 智能判断：solr（新增数据时，只能使用提前配置好映射属性的字段，否则会报错）。
+						Elasticsearch（不需要给索引库设置任何mapping映射，它也可以根据你输入的数据来判断类型，动态添加数据映射）
+							如果存储的是String类型数据，ES无智能判断，它会存入两个字段。例如：存入一个name字段，智能形成两个字段：
+								name: text类型	name.keyword: keyword类型
+				* 修改数据：修改必须指定id。id对应文档存在，则修改；id对应文档不存在，则新增。
+					* 请求方式：PUT
+					* 请求路径：/索引库名/类型名称/id值
+				* 查询：
+					* 基本查询：
+						GET /索引库名/_search
+						{
+							"query": {
+								"查询类型": {
+									"查询条件":"查询条件值"
+								}
+							}
+						}
+						例子：  GET /article/_search
+								{
+									"query": {
+										"match": {
+											"title": {
+												"query": "广州上海",
+												"operator":"and"
+											}
+										}
+									}
+								}
+						* 查询类型：	
+							* 查询所有(match_all)【全文检索】
+							* 多字段查询(multi_match)
+								GET /索引库名/_search
+								{
+									"query": {
+										"multi_match": {
+											"query": "查询内容",
+											"fields": ["查询字段1","查询字段2"]
+										}
+									}
+								}
+							* 词条匹配(term)：查询被用于精确值匹配，这些精确值可能是数字、时间、布尔或者那些未分词的字符串
+								GET /索引库名/_search
+								{
+									"query": {
+										"term": {
+											"查询字段":"查询内容"
+										}
+									}
+								}
+								* 推荐除了text以外的类型用term，减少分词带来的消耗
+					* 结果过滤：	{"_source": ["过滤字段1","过滤字段2"]}
+						{
+							"_source": {
+								# "includes": "过滤字段"	# 和上面作用一样
+								"excludes":"排除过滤字段"
+							}
+						}
+					* 高级查询
+						* 模糊查询(fuzzy)
+						* 范围查询(range)
+							GET /索引库名/_search
+							{
+								"query": {
+									"range": {
+										"查询字段": {
+											"gte": 数值,	# 大于
+											"lte": 数值		# 小于
+										}
+									}
+								}
+							}
+						* 布尔查询和过滤
+							例：GET /索引库名/_search
+								{
+									"query": {
+										"bool": {
+											"must": [
+												{"match": {
+													"查询字段": "查询内容"
+												}}
+											],
+											"filter": {
+												"range": {
+													"过滤字段": {
+														"gte": 数值
+													}
+												}
+											}
+										}
+									}
+								}
+						* 排序："sort": [
+									{
+										"排序字段": {
+											"order": "desc"  # 降序排序
+										}
+									}
+								]
+						* 分页："from": 数值	# 从哪里开始
+								"size": 数值	# 每页大小
+					* 聚合aggregations：实现对数据的统计、分析
+						* 基本概念：包括多种类型，最常见的两种，一个叫 桶（bucket） ，一个叫 度量（metrics）
+							* 桶：作用：是按照某种方式对数据进行分组，每一组数据在es中称为一个桶（组）。
+								* Terms Aggregation：根据词条内容分组，词条内容完全匹配的为一组
+								* Range Aggregation：数值和日期的范围分组，指定开始和结束，然后按段分组
+								* Histogram Aggregation: 根据数值阶梯(Inteval)分组
+								* Date Aggregation：根据日期阶梯分组，例如：给定阶梯为周，会自动每周分为一组
+									* GET /索引库名/_search
+									  {
+										"aggs": {
+											"桶分组名称": {
+												"桶分组方式": {	
+													"field": "分桶字段"
+												}
+											}
+										}
+									  }
+							* 度量：分组完以后，一般会对组中的数据进行聚合运算，例如求平均值、最大、最小、求和等，这些在es中称为度量。
+								* Avg Aggregation：求平均值
+								* Max Aggregation：求最大值
+								* Min Aggregation：求最小值
+								* Percentiles Aggregation：求百分比
+								* Stats Aggregation：同时返回avg、max、min、sum、count等
+								* Sum Aggregation：求和
+								* Top hits Aggregation：求前几
+								* Value Count Aggregation：求总数
+									* GET /索引库名/_search
+									  {
+										"aggs": {
+											"度量名称": {
+												"度量运算": {
+													"field": "运算字段"
+												}
+											}
+										}
+									  }
+									* 例子：{
+												"size": 0,
+												"aggs": {
+													"popular_brand": {
+														"terms": {
+															"field": "make"
+														},
+														"aggs": {
+															"price_avg": {
+																"avg": {
+																	"field": "price"
+																}
+															}
+														}
+													}
+												}
+									}
+							* 索引库数据格式分析
+								* 搜索的结果是SPU，即多个SKU的集合
+								* 需要什么数据：
+									* 直观能看到的：图片、价格、标题、副标题 属于SKU数据
+									* 暗藏的数据：spu的id，sku的id
+									* 页面的过滤条件：商品分类、品牌、可用来搜索的规格参数等
+								* 生成规格参数过滤：
+									1. 用户搜索得到的商品，并聚合出商品分类
+									2. 判断分类数量是否等于1，如果是则进行规格参数聚合
+									3. 现根据分类，查找可以用来搜索的规格
+									4. 在用户搜索结果的基础上，对规格参数进行聚合（细节）
+									5. 将规格参数聚合结果整理后返回
+		* 商品详情
+			* Thymeleaf
+				* 作用：服务端的页面渲染。
+				* 环境准备：
+					* maven依赖：
+						<dependency>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-starter-thymeleaf</artifactId>
+						</dependency>
+
+						<dependency>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-starter-web</artifactId>
+						</dependency>
+					* Thymeleaf视图解析器会去解析:classpath/templates下的.html文件
+					* spring: thymeleaf: cache: false 清除Thymeleaf缓存，然后recompile可以重新编译修改的前端文件
+				* 提供了一些内置对象和方法.获取这些对象，需要使用 #对象名 来引用。
+					* 一些环境相关对象
+						#ctx：获取Thymeleaf自己的Context对象
+						#request：如果是web程序，可以获取HttpServletRequest对象
+						#response：如果是web程序，可以获取HttpServletResponse对象
+						#session：如果是web程序，可以获取HttpSession对象
+						#servletContext：如果是web程序，可以获取HttpServletContext对象
+					* Thymeleaf提供的全局变量
+						#dates：处理java.util.date的工具类
+						#calendars：处理java.util.calendar的工具类
+						#numbers：用来对数字格式化的方法
+						#strings：用来处理字符串的方法
+						#bools：用来判断布尔值的方法
+						#arrays：用来处理数组的方法
+						#lists：用来处理List集合的方法
+						#sets：用来处理set集合的方法
+						#maps：用来处理map集合的方法
+				* 字面值：在指令中填写基本类型如：字符串、数值、布尔等，并不希望被Thymeleaf解析为变量，这个时候被称为字面值。
+					使用一对'引用的内容就是字符串字面值了'
+			* 封装模型数据：
+				spu信息 spu的详情 spu下的所有sku 品牌 商品三级分类 商品规格参数、规格参数组
+			* 页面静态化：
+				* 什么是静态化：是指把动态生成的HTML页面变为静态内容保存，以后用户的请求到来，直接访问静态页面，不再经过服务器的渲染。
+					静态的HTML页面可以部署到nginx中，从而大大提高高并发能力，减少tomcat压力.
+				* 如何实现静态化：目前，静态化页面都是通过模板引擎来生成的，而后保存到nginx服务器来部署。
+					常用的模板引擎比如：Freemarker、Velocity、Thymeleaf
+					Thymeleaf可以把渲染结果写入Response，也可以写到本地文件，从而实现静态化。
+				* Thymeleaf实现静态化：
+					* 相关概念：
+						* Context：运行上下文。用来保存模型数据，当模板引擎渲染时，可以从Context上下文中获取数据用于渲染。
+						* TemplateResolver：模板解析器。用于读取模板相关的配置，例如：模板存放的位置信息，模板文件名称，模板文件的类型等等。
+						* TemplateEngine：模板引擎。用来解析模板的引擎，需要使用到上下文、模板解析器。分别从两者中获取模板中需要的数据，模板文件。
+							然后利用内置的语法规则解析，从而输出解析后的文件。模板引起进行处理的函数：
+							templateEngine.process("模板名", context, writer);
+							三个参数：  模板名称
+										上下文：里面包含模型数据
+										writer：输出目的地的流
+		
+		* 消息队列（MQ）
+			* 什么是消息队列：即MQ，Message Queue。是一种应用程序对应用程序的通信方式。应用程序通过读写出入队列的消息（针对应用程序的数据）来通信，而无需专用连接来连接他们。
+				消息队列是典型的：生产者、消费者模型。生产者不断向消息队列中生产消息，消费者不断从队列中获取消息。
+				因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入，这样就实现了生产者和消费者的解耦。
+			* AMQP和JMS
+				* AMQP：即Advanced Message Queuing Protocol 一个提供统一消息服务的应用层标准 高级消息队列协议。（限定了数据传输的格式和方式，跨语言跨平台，和http类似）。是应用层协议的一个开放标准，为面向消息的中间件设计。
+				* JMS：Java MessageService，实际上指JMS API。JMS是由Sun公司早期提出的消息标准，旨在为Java应用提供统一的消息操作，包括create、send、recieve等。JMS已经成为java Enterprise Edition的一部分。
+				* 两者间的区别和联系：
+					* JMS是定义了统一的接口，来对消息操作进行统一；AMQP是通过规定协议来统一数据交互的格式
+					* JMS限定了必须使用Java语言；AMQP只是协议，不规定实现方式，因此是跨语言的
+					* JMS规定了两种消息模型；而AMQP的消息模型更加丰富。
+			* 常见MQ产品：
+				* ActiveMQ：基于JMS，Apache
+				* RabbitMQ：基于AMQP协议，erlang（一种通用的面向并发的编程语言）语言开发，稳定性好
+				* RocketMQ：基于JMS，阿里巴巴产品，目前交由Apache基金会
+				* Kafka：分布式消息系统，高吞吐量
+			* RabbitMQ：（https://www.cnblogs.com/rmxd/p/11583932.html）
+				* 官方网站：http://www.rabbitmq.com/
+				* 启动步骤：cd \RabbitMQ Server\rabbitmq_server-3.7.15\sbin
+						rabbitmq-plugins enable rabbitmq_management
+						rabbitmq-server
+				* 五种消息模型：RabbitMQ提供了6种消息模型，但是第6种RPC，并不是MQ。其中3/4/5这三种属于订阅模型，只不过进行路由的方式不同。
+					* 基本消息模型：RabbitMQ是一个消息的代理者(Message broker)：它接收消息并且传递消息。你可以认为它是一个邮局，当你投递邮件到一个邮箱，你很肯定邮递员终究会将邮件递交给你的收件人。
+						与此类似，RabbitMQ可以是一个邮箱、邮局、同时还有邮递员。不同之处在于：RabbitMQ不是传递纸质邮件，而是二进制的数据
+						* RabbitMQ怎么知道消息被接收了呢？（即如何避免消息的丢失）：消费者的消息确认机制
+							通过消息确认机制（Acknowlege）来实现。当消费者获取消息后，会向RabbitMQ发送回执ACK，告知消息已经被接收。不过这种回执ACK分两种情况：
+								* 自动ACK：消息一旦被接收，消费者自动发送ACK
+								* 手动ACK：消息接收后，不会发送ACK，需要手动调用
+					* work消息模型：也称为Task queues任务模型。当消息处理比较耗时的时候，可能生产消息的速度会远远大于消息的消费速度。长此以往，消息就会堆积越来越多，无法及时处理。
+						此时就可以使用work模型：让多个消费者绑定到一个队列，共同消费队列中的消息。队列中的消息一旦消费，就会消失，因此任务是不会被重复执行的。
+						* 默认是任务平分，一次分配完全
+						* channel.basicQos(1); // 设置每个消费者同时只能处理一条消息（即能者多劳,耗时小的多处理些）
+					* 订阅模型分类
+						* 订阅模型-Fanout：广播。一条消息，会被所有订阅的队列都消费。
+						* 订阅模型-Direct：不同的消息被不同的队列消费。在Direct模型下：
+							* 队列与交换机的绑定，不能是任意绑定，而是要指定至少一个RoutingKey（路由key）
+							* 消息的发送方向 Exchange 发送消息时，也必须指定消息的 RoutingKey。
+							* Exchange不再把消息交给每一个绑定的队列，而是根据消息的RoutingKey进行判断，只有队列的RoutingKey与消息的RoutingKey完全一致，才会接收到消息。
+						* 订阅模型-Topic：可以根据RoutingKey把消息路由到不同的队列，Topic类型Exchange可以让队列在绑定RoutingKey的时候使用通配符。
+							* RoutingKey 一般都是有一个或多个单词组成，多个单词之间以"."分割，例：item.insert
+							* 通配符规格：
+								#: 匹配一个或多个词
+								*：匹配不多不少恰好1个词
+				* 持久化：要将消息持久化，前提是：队列、Exchange都持久化
+						* 交换机持久化：channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC, true);	// 参数三：设置durable为true
+						* 队列持久化：channel.queueDeclare(QUEUE_NAME, true, false, false, null);	// 参数二：设置为true，表示设置队列持久化
+						* 消息持久化：channel.basicPublish(EXCHANGE_NAME, "item.insert", MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+				* 解决消息丢失？
+						* ACK（消费者确认，由消费者向mq发送，防止消息丢失于消费者）
+						* 持久化（防止rabbitmq把消息丢失）
+						* 生产者确认机制（publisher confirm）【由mq向生产者发送，有些mq包含，有些不包含，比如：activeMQ】
+						* 发送消息前，将消息持久化到数据库，并记录消息状态（可靠消息服务）
+					* 幂等性（同一接口被重复执行，其结果一致）
+					* 如何保证消息发送的重复性，如何保证接口的幂等性？加标识（消息的重发要谨慎）
+		
+		* Redis：一款NoSql数据库。
+			* 什么是NoSql？Not Only Sql，“不仅仅是SQL”。关系型数据库是非常严谨的，数据的存储方式不能随意定义，一旦定义，输入数据就需要按照特定方式。
+				NoSql对数据格式没有特别严格的要求，可以存储任意的东西，甚至可以存入文件。
+				* 常见的NoSql产品：MongoDB、redis、Cassanddra、hbase（列存储）、hive、Neo4j
+			* redis与Memcache的区别差异？
+				* 从实现来看：redis：单线程。Memcache：多线程。
+				* 从存储方式来看：redis：支持数据持久化和主从备份，数据更安全。Memcache：数据存于内存，没有持久化功能。
+				* 从功能来看：redis：除了基本的k-v结构外，支持多种其它复杂结构、事务等高级功能。Memcache：只支持基本k-v结构。
+				* 从可用性看：redis：支持主从备份、数据分片、哨兵监控。Memecache：没有分片功能，需要从客户端支持。
+			* redis安装和配置：
+				* 加压：tar -xvf redis-4.0.9.tar.gz
+				* 编译安装：cd redis-4.0.9 --> make && make install
+				* 配置：vim redis.conf --> # bing 127.0.0.1 // 将这行代码注释，监听所有的ip地址，外网可以访问
+											protected-mode no // 把yes改成no，允许外网访问
+											daemonize yes // 把no改成yes，后台运行
+				* 启动或停止：
+					* redis-server 服务端命令，可以包含以下参数：start：启动	stop：停止
+					* redis-cli 客户端控制台，包含参数：-h xxx：指定服务端地址，缺省值是127.0.0.1		-p xxx：指定服务端端口，缺省值是6379
+			* redis指定：
+					* String：等同于java中的，Map<String, String>
+					* list：等同于java中的，Map<string, List<String>>
+					* set：等同于java中的，Map<string, Set<String>>
+					* sort_set：可排序的set
+					* hash：等同于java中的，Map<String, Map<String, String>>
+					> Redis中存储数据结构都是类似java的map类型。Redis不同数据类型，只是'map'的值的类型不同。
+				* 通用指令：
+					* keys：获取符合规格的键名列表。语法：keys pattern。例：keys *(查询所有的键)
+						> 生产环境一定禁用keys（原因：redis是单线程的，keys相当于模糊查询，如果数据量大时，会造成其他线程阻塞，然后keys又相当耗时，可能会造成cpu卡死服务宕机，依赖redis的所有服务不可用）
+						* 如何禁用：进入redis.conf 通过rename=commond 把keys重命名为其他不容易用到的词达到禁用。
+					* exists：判断一个键是否存在，如果存在返回整数1，不存在则返回整数0.语法：EXISTS key
+					* del：删除key，可以删除一个或多个key，返回一个数值表示删除多少个。语法：DEL key[key...]
+					* select：语法：SELECT index。redis默认有16个库，select是选择库，索引从0开始。集群中是禁止使用select，可以去redis.conf配置中修改为database=1，变为一个库。
+					* expire：语法：EXPIRE key seconds。作用：设置key的过期时间，超过时间后，将会自动删除key。redis中key如果没有设置过期，则该key将会是永久的，除非是redis库满了，会按照最近最少使用原则删除key。
+					* TTL：查看一个key的过期时间。语法：TTL key。返回值：① 返回剩余的过期时间。 ② -1：永不过期。 ③ -2：已过期或不存在。
+					* persist：语法：persist key。作用：移除给定key的生存时间，将这个key从带生存时间key转换成一个不带生存时间、永不过期的key。
+				* 字符串指令：字符串类型是Redis中最基本的数据类型，它能存储任何形式的字符串，包括二进制数据。可以存储JSON化的对象、字节数组等。一个字符串类型键允许存储的数据最大容量是512MB。
+					* SET key value：设置指定key的值
+					* GET key：获取指定key的值
+					* INCR key：将key中存储的数字值增一
+					* DECR key：将key中存储的数字值减一
+					* mset key value [key value...]：同时设置一个或多个key-value对
+					* mget key [key...]：获取所有（一个或多个）给定key的值
+				* hash结构命令：称键为key，字段名为 hKey， 字段值为 hValue（比较适合用于存对象）
+					* hset key field value：存入hash结构数据
+					* hget key field：获取hash结构key对应的field字段对应的值
+					* hgetall key：获取所有的field和value值
+					* hkeys key：获取所有哈希表中字段
+					* hvalues key：获取哈希表中所有值
+					* hdel key field [field...]：删除一个或多个哈希表字段
+			* Redis的持久化：redis有两种持久化方案：RDB和AOF
+		* 阿里短信服务
+			AccessToken:
+				- LTAI4FrhM3PJB9bKZ3bW73sJ
+				- O01sjnCZ8T4eq7gqEUvZ3Ev8MCQ2di
+		
+		* 创建用户中心：
+			* Hibernate Validator：是Hibernate提供的一个开源框架，使用注解方式非常方便的实现服务端的数据校验。
+				* hibernate Validator是Bean Validation的参考实现
+				* Bean校验的注解：
+					@Valid：被注释的元素是一个对象，需要检查此对象的所有字段值
+					@Null：被注释的元素必须为null
+					@NotNull：被注释的元素必须不为null
+					@AssertTrue：被注释的元素必须为true
+					@AssertFalse：被注释的元素必须为false
+					@Min(value)：被注释的元素必须是一个数字，其值必须大于等于指定的最小值
+					@Max(value)：被注释的元素必须是一个数字，其值必须小于等于指定的最大值
+					@DecimalMin(value)：被注释的元素必须是一个数字，其值必须大于等于指定的最小值
+					@DecimalMax(value)：被注释的元素必须是一个数字，其值必须小于等于指定的最大值
+					@Size(max, min)：被注释的元素的大小必须在指定的范围内
+					@Digits(integer, fraction)：被注释的元素必须是一个数字，其值必须在可接受的范围内
+					@Past：被注释的元素必须是一个过去的日期
+					@Future：被注释的元素必须是一个将来的日期
+					@Pattern(value)：被注释的元素必须符合指定的正则表达式
+					@Email：被注释的元素必须是电子邮箱地址
+					@Length：被注释的字符串的大小必须在指定的范围内
+					@NotEmpty：被注释的字符串必须非空
+					@Range：被注释的元素必须在合适的范围内
+					@NotBlank：被注释的字符串必须非空
+					@URL(protocol=, host=, port=, regexp=, flags=)：被注释的字符串必须是一个有效的url
+					@CreditCardNumber：被注释的字符串必须通过Luhn校验算法，银行卡，信用卡号码一般都用Luhn计算合法性
+			* 授权中心：
+				* 无状态登录原理：
+					* 什么是有状态？
+						* 有状态服务，即服务端需要记录每次会话的客户端信息，从而识别客户端身份，根据用户身份进行请求的处理，典型的设计如tomcat中的session
+						* 例：用户登录后，我们把登录者的信息保存在服务端session中，并且给用户一个cookie值，记录对应的session。然后下次请求，
+							用户携带cookie值来，我们就能识别到对应session，从而找到用户的信息。
+						* 缺点：
+							* 服务端保存大量数据，增加服务端压力
+							* 服务端保存用户状态，无法进行水平扩展
+							* 客户端请求依赖服务端，多次请求必须访问同一台服务器
+					* 什么是无状态？
+						* 服务的无状态性，即：
+							* 服务端不保存任何客户端请求者信息
+							* 客户端的每次请求必须具备自描述信息，通过这些信息识别客户端身份
+						* 好处：
+							* 客户端请求不依赖服务端的信息，任何多次请求不需要必须访问到同一台服务
+							* 服务端的集群和状态对客户端透明
+							* 服务端可以任意的迁移和伸缩
+							* 减小服务端存储压力
+					* 如何实现无状态：
+						* 无状态登录的流程：
+							* 当客户端第一次请求服务时，服务端对用户进行信息认证（登录）
+							* 认证通过，将用户信息进行加密形成token，返回给客户端，作为登录凭证
+							* 以后每次请求，客户端都携带认证的token
+							* 服务对token进行解密，判断是否有效。
+					* JWT：Json Web Token，是JSON风格轻量级的授权和身份认证规范，可实现无状态、分布式的Web应用授权。
+						* 数据格式：JWT包含三部分数据：
+							* Header：头部，通常头部有两部分消息：
+								* 声明类型，这里是JWT
+								* 加密算法，自定义
+							* Payload：载荷，就是有效数据，一般包含下面信息：
+								* 用户身份信息（注意，这里因为采用base64加密，可解密，因此不要存放敏感信息）
+								* 注册申明：如token的签发时间，过期时间，签发人等
+							* Signature：签名，是整个数据的认证信息。一般根据前两步的数据，再加上服务的密钥（secret）（不要
+								泄漏，最好周期性更换），通过加密算法生成。用于验证整个数据完整和可靠性
+					* 非对称算法
+						* 加密技术是对信息进行编码和解码的技术，编码是把原来可读信息（又称明文）译成代码形式（又称密文），其逆
+							过程就是解码（解密），加密技术的要点是加密算法，加密算法可以分为三类：
+							* 对称加密，如AES：
+								* 基本原理：将明文分成N个组，然后使用密钥对各个组进行加密，形成各自的密文，最后把所有的分组密文进行合并，形成最终的密文。
+								* 优势：算法公开、计算量小、加密速度快、加密效率高
+								* 缺陷：双方都使用同样密钥，安全性得不到保证
+							* 非对称加密，如RSA：
+								* 基本原理同时生成两把密钥：私钥和公钥，私钥隐藏保存，公钥可以下发给信任客户端
+									* 私钥加密，持有私钥或公钥才可以解密
+									* 公钥加密，持有私钥才可以解密
+								* 优点：安全，难以破解
+								* 缺点：算法比较耗时
+							* 不可逆加密，如MD5,SHA：
+								* 基本原理：加密过程不需要使用密钥，输入明文后由系统直接经过加密算法处理成密文，
+									这种加密后的数据是无法被解密的，无法根据密文推算出明文。
+				* 可优化的点：（鉴权登录还需要完善）
+					* 需要引入权限控制系统
+					* 授权中心还可以做服务鉴权
+				* 面试点：
+					* 如果你的微服务地址暴露了怎么办？
+						1. 首先地址不会暴露，因为所有微服务都是通过Zuul进行访问(而且微服务模型较小，部署到同一台机器，局域网访问，很难猜出ip和端口)，对外暴露的只有Zuul。
+						2. 万一暴露了，服务间鉴权。
+					* 如果cookie被禁用了怎么办？
+						* 首先可以提示用户，网站必须使用cookie，不能禁用
+						* 把token放入头中返回，JS中获取头信息，存入web存储（localStorage、SessionStorage），每次请求都需要手动携带token，写入头中
+					* 如果cookie被盗用了怎么办？（两种原因：被黑了，网络抓包）
+						* 我们的cookie无法篡改
+						* 加入ip地址识别身份（不太好）
+						* 使用HTTPS协议，访问数据泄露
+			* 购物车
+				* 未登录购物购物车：
+					* web本地存储：HTML5提供了两种在客户端存储数据的方法（localStorage、sessionStorage）。在HTML5中，数据不是由每个服务器请求传递的，
+						而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能。对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。
+						* cookie不适合大量数据的存储，因为他们由每个对服务器的请求来传递，这使得cookie速度很慢而且效率也不高。
+						* LocalStorage：localStorage方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据亦然可用。
+						* SessionStorage：sessionStorage方法针对一个session进行数据存储。当用户关闭浏览器窗口后，数据会被删除。
+					* localStorage的用法：
+						* localStorage.setItem(key, value); // 存储数据
+						* localStorage.getItem(key);	// 获取数据
+						* localStorage.removeItem(key);		// 删除数据
+						* 注意：localStorage和SeesionStorage都只能保存字符串
+				* 已登录：使用redis存储，使用redis中的hash
+			* 订单服务：
+				* 雪花算法：会生成一个64位的二进制数据，为一个Long型。其基本结构为：
+					第一位：为未使用
+					第二部分：41位为毫秒级时间（可以使用69年）
+					第三部分：5位datacenterId和5位workerId（支持部署1024个节点）
+					第四部分：最后12位是毫秒内的运算（支持每个节点每毫秒产生4096个ID序号）
+					` snowflake生成的ID整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。经测试每秒能够产生26万个ID。
+				* 分布式事务一致性问题办法：
+					1、分阶段提交事务（2PC）
+					2、【TCC】补偿性事务（Try - Confirm - cancel）
+					3、异步确保
+			* 微信支付：native支付：https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1
+				* 内网穿透：目的：让外网能够访问你本地的应用。
+					* 使用免费软件：natapp
+				* 仔细按照微信支付官网要求
+			
+				
+				
+				
+					
+			
+									
+								
+							
+						
+						
+							
+								
+					
+					
+				
+				
+				
+		
+		

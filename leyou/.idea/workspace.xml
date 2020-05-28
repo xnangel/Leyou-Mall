@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="590c5c2c-c622-4cb8-91c3-f8450728e908" name="Default Changelist" comment="" />
+    <list default="true" id="590c5c2c-c622-4cb8-91c3-f8450728e908" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leyou-cart/leyou-cart.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leyou-order/leyou-order.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leyou-page/leyou-page.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leyou-sms/leyou-sms.iml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +38,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -49,6 +59,7 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectId" id="1Y3aLD0vP1SDiSy9z1mf07HPRVX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -61,6 +72,7 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1581954091489" />
@@ -282,22 +294,7 @@
         <serviceView>
           <option name="contentProportion" value="0.22331691" />
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -396,11 +393,23 @@
       <workItem from="1590502738884" duration="9151000" />
       <workItem from="1590582527555" duration="9907000" />
       <workItem from="1590635440966" duration="11000" />
+      <workItem from="1590638508658" duration="206000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="902" y="106" key="#Inspections" timestamp="1582336990140">
@@ -427,38 +436,38 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="816" y="220" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1590502767281" />
-    <state width="1000" height="393" key="GridCell.Tab.0.bottom" timestamp="1590594813062">
+    <state width="1000" height="360" key="GridCell.Tab.0.bottom" timestamp="1590638714407">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1000" height="393" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1590594813062" />
-    <state width="1000" height="393" key="GridCell.Tab.0.center" timestamp="1590594813062">
+    <state width="1000" height="360" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1590638714407" />
+    <state width="1000" height="360" key="GridCell.Tab.0.center" timestamp="1590638714407">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1000" height="393" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1590594813062" />
-    <state width="1000" height="393" key="GridCell.Tab.0.left" timestamp="1590594813061">
+    <state width="1000" height="360" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1590638714407" />
+    <state width="1000" height="360" key="GridCell.Tab.0.left" timestamp="1590638714407">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1000" height="393" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1590594813061" />
-    <state width="1000" height="393" key="GridCell.Tab.0.right" timestamp="1590594813062">
+    <state width="1000" height="360" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1590638714407" />
+    <state width="1000" height="360" key="GridCell.Tab.0.right" timestamp="1590638714407">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1000" height="393" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1590594813062" />
-    <state width="1000" height="393" key="GridCell.Tab.1.bottom" timestamp="1590594813062">
+    <state width="1000" height="360" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1590638714407" />
+    <state width="1000" height="360" key="GridCell.Tab.1.bottom" timestamp="1590638714407">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1000" height="393" key="GridCell.Tab.1.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1590594813062" />
-    <state width="1000" height="393" key="GridCell.Tab.1.center" timestamp="1590594813062">
+    <state width="1000" height="360" key="GridCell.Tab.1.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1590638714407" />
+    <state width="1000" height="360" key="GridCell.Tab.1.center" timestamp="1590638714407">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1000" height="393" key="GridCell.Tab.1.center/0.0.1920.1032@0.0.1920.1032" timestamp="1590594813062" />
-    <state width="1000" height="393" key="GridCell.Tab.1.left" timestamp="1590594813062">
+    <state width="1000" height="360" key="GridCell.Tab.1.center/0.0.1920.1032@0.0.1920.1032" timestamp="1590638714407" />
+    <state width="1000" height="360" key="GridCell.Tab.1.left" timestamp="1590638714407">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1000" height="393" key="GridCell.Tab.1.left/0.0.1920.1032@0.0.1920.1032" timestamp="1590594813062" />
-    <state width="1000" height="393" key="GridCell.Tab.1.right" timestamp="1590594813062">
+    <state width="1000" height="360" key="GridCell.Tab.1.left/0.0.1920.1032@0.0.1920.1032" timestamp="1590638714407" />
+    <state width="1000" height="360" key="GridCell.Tab.1.right" timestamp="1590638714407">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1000" height="393" key="GridCell.Tab.1.right/0.0.1920.1032@0.0.1920.1032" timestamp="1590594813062" />
+    <state width="1000" height="360" key="GridCell.Tab.1.right/0.0.1920.1032@0.0.1920.1032" timestamp="1590638714407" />
     <state width="1000" height="394" key="GridCell.Tab.2.bottom" timestamp="1590515616914">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
